@@ -1,1 +1,10 @@
-
+The RaceDay API is a RESTful Web API built with ASP.NET Core and raw ADO.NET (`SqlConnection`) for managing sports events, enrollments, and results,
+featuring strict Role-Based Access Control (RBAC) managed via JWT authentication. The system serves two primary roles: **Organisers**, who can create and manage events, 
+define categories and fees, view all event enrollments, and post final race results; and **Participants**, who can view events, enroll in categories
+to generate a race number, and view their own enrollment history and personal results. To set up the project, you must execute the provided SQL script in SQL Server Management
+Studio to create the `RaceDay` database, update the `DefaultConnection`
+string in `appsettings.json` to point to your local SQL instance, and ensure the JWT configuration keys are populated. Once configured, restore dependencies with `dotnet restore
+` and run the application using `dotnet run` to access the Swagger UI for endpoint testing.To run the unit tests locally, ensure a separate `RaceDay_Test` database is configured within 
+`CustomWebApplicationFactory.cs` and execute `dotnet test`. Additionally, the repository includes a GitHub Actions CI workflow (`.github/workflows/dotnet.yml`) that automatically builds the solution
+and runs all tests upon every push to the main branch.Security is prioritized through BCrypt password hashing, JWT token validation, strict role-based endpoint authorization, and database-level ownership
+checks ensuring Organisers can only modify their own events.
